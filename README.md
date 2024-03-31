@@ -10,15 +10,15 @@ Akin to `\newtheorem` from the `amsmath` package, the user should start by defin
 ## Commands
 
 * `\tcbnewtheorem{<envname>}{<Name>}[<tcolorbox options>]`\
-`      <envname>` is the environment name, e.g., theorem.\
-`      <Name>` is the name for new environment being defined, e.g., Theorem.\
-`      <tcolorbox options>` options to be passed to the `tcolorbox` environment to customize the boxes for the given environment (this argument is optional).\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`<envname>` is the environment name, e.g., theorem.\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`<Name>` is the name for new environment being defined, e.g., Theorem.\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`<tcolorbox options>` options to be passed to the `tcolorbox` environment to customize the boxes for the given environment (this argument is optional).\
 * `\begin{<envname>}{<Caption>}[<tcolorbox options>]<Contents>\end{<envname>}`\
-`      <envname>` is the environment name, e.g., theorem.\
-`      <Caption>` is the caption/title of the box.\
-`      <tcolorbox options>` options to be passed to the `tcolorbox` environment,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`<envname>` is the environment name, e.g., theorem.\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`<Caption>` is the caption/title of the box.\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`<tcolorbox options>` options to be passed to the `tcolorbox` environment,
 which will override the defaults given in `\tcbnewtheorem`.\
-`      <Contents>` the contents to by typeset inside the coulored environment.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`<Contents>` the contents to by typeset inside the coulored environment.
 * `\listof<envname>s` wherer `<envname>` is the environment name, e.g., `\listoftheorems`. Please notice that there is a ‘s’ (plural) after `<envname>`, .
 
 ## Example
