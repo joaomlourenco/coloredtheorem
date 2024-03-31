@@ -8,19 +8,19 @@ A colourful boxed theorem environment, combining `tcolorbox` and breakable boxes
   <source
     media="(prefers-color-scheme: dark)"
     srcset="
-      https://api.star-history.com/svg?repos=joaomlourenco/novathesis&type=Date&theme=dark
+      https://api.star-history.com/svg?repos=joaomlourenco/tcbtheorem&type=Date&theme=dark
     "
   />
   <source
     media="(prefers-color-scheme: light)"
     srcset="
-      https://api.star-history.com/svg?repos=joaomlourenco/novathesis&type=Date
+      https://api.star-history.com/svg?repos=joaomlourenco/tcbtheorem&type=Date
     "
   />
   <img
     width="500"
     alt="Star History Chart"
-    src="https://api.star-history.com/svg?repos=joaomlourenco/novathesis&type=Date"
+    src="https://api.star-history.com/svg?repos=joaomlourenco/tcbtheorem&type=Date"
   />
 </picture>
 
