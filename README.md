@@ -2,6 +2,30 @@
 
 A colourful boxed theorem environment, combining `tcolorbox` and breakable boxes.  It supports full `tcolorbox` customization, automatic numbering, `\label{...}` and `\ref{…}`, and `\listof…`
 
+--------
+
+<picture>
+  <source
+    media="(prefers-color-scheme: dark)"
+    srcset="
+      https://api.star-history.com/svg?repos=joaomlourenco/novathesis&type=Date&theme=dark
+    "
+  />
+  <source
+    media="(prefers-color-scheme: light)"
+    srcset="
+      https://api.star-history.com/svg?repos=joaomlourenco/novathesis&type=Date
+    "
+  />
+  <img
+    width="500"
+    alt="Star History Chart"
+    src="https://api.star-history.com/svg?repos=joaomlourenco/novathesis&type=Date"
+  />
+</picture>
+
+--------
+
 ## Introduction
 
 The `tcbtheorem` package is a simple environment, which takes no options, and that allows to write stuff inside boxes from `tcolorbox`. So, this packages includes `tcolorbox`.
