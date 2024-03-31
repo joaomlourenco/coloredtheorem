@@ -1,0 +1,169 @@
+\documentclass{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% AMSMATH stuff
+% \usepackage{amsthm}
+% \usepackage{thmtools}
+% \usepackage{amsfonts}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% TCBTHEOREM stuff
+\usepackage{tcbtheorem}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% EXAMPLE document
+\usepackage{amsfonts}
+\usepackage{kantlipsum}
+\usepackage{tabularx}
+\usepackage{xspace}
+\newcommand\tcthrm{\texttt{tcbtheorem}\xspace}
+
+%% ALGPSEUDOCODEX stuff
+\usepackage{algorithm}
+\usepackage[
+  noEnd=false,
+  beginComment={$\triangleright$~\scriptsize},
+  beginLComment={$\triangleright$~},
+  endLComment={},
+]{algpseudocodex}
+
+\algnewcommand\Input{\textbf{Input:~}}
+\algrenewcommand\Output{\textbf{Output:~}}
+\algrenewcommand\algorithmicforall{\textbf{for each}}
+\algnewcommand\Vspace{% 
+  {\setlength\itemsep{-1ex}\item[]~}
+}
+\algnewcommand\Let[2]{\State \ensuremath{#1 \gets #2}}
+\algnewcommand\And{\ensuremath{\wedge}\xspace}
+\algnewcommand\Or{\ensuremath{\vee}\xspace}
+\algnewcommand\Not{\ensuremath{\neg}\xspace}
+
+\usepackage[colorlinks,linkcolor=blue!80]{hyperref}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% MAIN DOCUMENT
+\begin{document}
+  \title{The \tcthrm package}
+  \author{João M. Lourenço\\\texttt{\small joao.lourenco@fct.unl.pt}}
+  \date{March 31, 2024}
+  
+  \maketitle
+  
+
+\section{Introduction}
+\label{sec:introduction}
+
+The \tcthrm package is a simple environment, which takes no options, and that allows to write stuff inside boxes from \texttt{tcolorbox}.  So, this packages includes \texttt{tcolorbox}.
+
+Akin to \verb!\newtheorem! from the \verb!amsmath! package, the user should start by defining a new \emph{theorem/box} group and customize its aspect. Each new environment will have its own counter/numnering. Notice that \verb!\label{…}! and \verb!\ref{…}! work as expected.  The is also a command to generate the corresponding \emph{list of …}
+
+\section{Commands}
+\label{sec:commands}
+
+\begin{description}
+  \item[]{\bfseries\verb+\tcbnewtheorem{<envname>}{<Name>}[tcolorbox options]+}\\
+      \verb!<envname>! is the environment name, e.g., \verb!theorem!.\\
+      \verb!<Name>! is the name for new environment being defined, e.g., \emph{Theorem}.\\
+      \verb!tcolorbox options! options to be passed to the \verb!tcolobox! environment to customize the boxes for the given environment (this argument is optional).
+  \item[]{\bfseries\verb+\begin{<envname>}{<Caption>}[tcolorbox options]<Contents>\end{<envname>}+}\\
+      \verb!<envname>! is the environment name, e.g., \verb!theorem!.\\
+      \verb!<Caption>! is the caption/title of the box.\\
+      \verb!tcolorbox options! options to be passed to the \verb!tcolobox! environment, which will override the defaults given in \verb!\tcbnewtheorem!.\\
+      \verb!<Contents>! the contents to by typeset inside the coulored environment.\\
+  \item[]{\bfseries\verb+\listof<envname>s+}\\
+      \verb!<envname>! is the environment name, e.g., e.g., \verb!\listoftheorems!.  Please notice that there is a `s' (plural) after \verb!<envname>!, .
+\end{description}
+
+\section{Example}
+\label{sec:examples}
+
+\emph{\kant[1]}
+
+\tcbnewtheorem{algorithm}{Algorithm}[coltitle=black, colback=yellow!10, colframe=black!15]
+\tcbnewtheorem{example}{Example}[coltitle=black, colback=black!5, colframe=black!30]
+
+\newcommand{\bracesemptyset}{\ensuremath{\lbrace\,\rbrace}}
+
+\begin{tcbalgorithm}{Advance a counter to the next value in a domain $\omega \in \mathbb{N}$.}
+  \label{alg:advance1}
+\begin{algorithmic}[1]
+  \Statex \Input $\alpha$: The current value; and $\omega$: the domain.
+  \Statex \Output The next value of $\alpha$ within the domain $\omega$.
+  \LComment{\color{blue}
+            e.g., $\alpha = 3 \And \omega = \lbrace 8, 3, 2, 21, 5, 1 \rbrace \rightarrow 5$}
+
+  \Vspace
+
+  \Function{advance}{$\alpha$: int, $\omega$: set} $\rightarrow$ int \textbf{is}
+    % \Statex\Comment{As we are incrementing one by one on the operation IDs, the complexity of this function is linear in the value of the largest operation id.}
+    \Let {\alpha} {\alpha + 1}
+                    \Comment{try the next value}
+    \While{$\alpha \not\in \omega \And \omega \neq \bracesemptyset$}
+                    \Comment{if this value is not in the domain}
+      \Let {\alpha} {\alpha + 1}
+                    \Comment{try the next value}
+    \EndWhile
+    \If{$\omega \neq \bracesemptyset$}
+      \Let {\omega} {\omega \,\backslash \lbrace \alpha \rbrace}
+                    \Comment{remove the value from the domain}
+    \EndIf
+    \State \Return $\alpha$
+                    \Comment{\color{red} the next value (or the last value plus one if no more values)}
+  \EndFunction
+\end{algorithmic}
+\end{tcbalgorithm}
+
+Now, lets write again \autoref{alg:advance1}, but now with a different visual!
+
+\begin{tcbalgorithm}{Advance a counter to the next value in a domain $\omega \in \mathbb{N}$, but now with a customized visual. Also, notice that this algorithm breaks the page boundaries.}[coltitle=white, colback=green!10, colframe=blue!70]
+  \label{alg:advance2}
+\begin{algorithmic}[1]
+  \Statex \Input $\alpha$: The current value; and $\omega$: the domain.
+  \Statex \Output The next value of $\alpha$ within the domain $\omega$.
+  \LComment{\color{blue}
+            e.g., $\alpha = 3 \And \omega = \lbrace 8, 3, 2, 21, 5, 1 \rbrace \rightarrow 5$}
+
+  \Vspace
+
+  \Function{advance}{$\alpha$: int, $\omega$: set} $\rightarrow$ int \textbf{is}
+    % \Statex\Comment{As we are incrementing one by one on the operation IDs, the complexity of this function is linear in the value of the largest operation id.}
+    \Let {\alpha} {\alpha + 1}
+                    \Comment{try the next value}
+    \While{$\alpha \not\in \omega \And \omega \neq \bracesemptyset$}
+                    \Comment{if this value is not in the domain}
+      \Let {\alpha} {\alpha + 1}
+                    \Comment{try the next value}
+    \EndWhile
+    \If{$\omega \neq \bracesemptyset$}
+      \Let {\omega} {\omega \,\backslash \lbrace \alpha \rbrace}
+                    \Comment{remove the value from the domain}
+    \EndIf
+    \State \Return $\alpha$
+                    \Comment{\color{red} the next value (or the last value plus one if no more values)}
+  \EndFunction
+\end{algorithmic}
+\end{tcbalgorithm}
+
+\emph{\kant[2]}
+
+Finally, let's add another example here, this time using the default visual that was given when creating the environment with \verb!\tcbnewtheorem!…
+
+\begin{tcbexample}{This is an example!}
+  \emph{\kant[3]}
+\end{tcbexample}
+
+And now an example with no caption and a different visual…  this example will not go into the \verb!\listofexamples! below!
+
+\begin{tcbexample}{}[coltitle=yellow, colback=blue!30, colframe=blue!70]
+  \emph{\kant[4]}
+\end{tcbexample}
+
+Now we get the lists of algorithms (\verb!\tcblistofalgorithms!) and examples (\verb!\tcblistofexamples!). Remember to add the prefix \verb!tcb!!
+
+\tcblistofalgorithms
+
+\tcblistofexamples
+
+\end{document}

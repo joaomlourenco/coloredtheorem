@@ -1,0 +1,56 @@
+%% This is file `tcbtheorem.sty',
+%%
+%% Copyright (C) 2024 by João Lourenço <joao.lourenco@fct.unl.pt>
+%%
+%% This file may be distributed and/or modified under the conditions of
+%% the LaTeX Project Public License, either version 1.3c of this license
+%% or (at your option) any later version. The latest version of this
+%% license is in:
+%%
+%%    http://www.latex-project.org/lppl.txt
+%%
+%% and version 1.3c or later is part of all distributions of LaTeX
+%% version 2006/05/20 or later.
+%%
+\NeedsTeXFormat{LaTeX2e}[2020/06/01]
+\ProvidesPackage{tcbtheorem}
+  [2024/03/31 v1.0 - a theorem-like environment inside a tcolobox]
+
+\RequirePackage[breakable]{tcolorbox}
+
+\NewDocumentCommand {\tcbnewtheorem} { m m O{} }{%
+  \expandafter\newcounter\expandafter{tcb#1}%
+  \expandafter\gdef\csname tcb#1name\endcsname{#2}%
+  \expandafter\gdef\csname tcblist#1name\endcsname{List of #2s}%
+  \expandafter\gdef\csname #1autorefname\endcsname{#2}%
+  \AtEndPreamble{%
+      \ifdefined\crefname\expandafter\crefname\expandafter{tcb#1}{#2}{#2s}\fi}%
+  \expandafter\gdef\csname tcblistof#1s\endcsname
+  {%
+    \section*{\csname tcblist#1name\endcsname}%
+    \expandafter\@starttoc\expandafter{lo#1}%
+  }
+  \expandafter\NewDocumentEnvironment\expandafter{tcb#1} {O{} m O{}}%
+  {% \begin{tcb<SOMETHING>}
+    \begin{center}%
+      \ifx\relax##1\relax
+        \ifx\relax##2\relax\else
+          \expandafter\refstepcounter\expandafter{tcb#1}%
+          \expandafter\addcontentsline\expandafter{lo#1}{subsection}
+                        {\protect\numberline{\csname thetcb#1\endcsname}##2}%
+        \fi
+      \else
+        \expandafter\addcontentsline\expandafter{lo#1}{subsection}
+                        {\protect\numberline{\csname thetcb#1\endcsname}##1}%
+      \fi
+      \begin{tcolorbox}[breakable,
+                        title={\textbf{\csname tcb#1name\endcsname
+                               \ifx\relax##2\relax\else
+                                   ~\csname thetcb#1\endcsname\fi}~~##2},
+                        #3, ##3,
+                       ]%
+  }{% \end{tcb<SOMETHING>}
+       \end{tcolorbox}%
+     \end{center}%
+  }%
+}
