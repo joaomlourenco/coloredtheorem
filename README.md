@@ -30,7 +30,9 @@ _As any dedicated reader can clearly see, the Ideal of practical reason is a rep
 Now, lets write again Algorithm 1, but now with a different visual!
 
 <img width="491" alt="image" src="https://github.com/joaomlourenco/tcbtheorem/assets/2064643/be180e78-bc59-48ff-9efa-a26af5dae0bd">
+
 (page break here!)
+
 <img width="489" alt="image" src="https://github.com/joaomlourenco/tcbtheorem/assets/2064643/04c6fcaa-1a27-4550-8b17-2ae4d90809b0">
 
 _Let us suppose that the noumena have nothing to do with necessity, since knowledge of the Categories is a posteriori. Hume tells us that the transcen- dental unity of apperception can not take account of the discipline of natural reason, by means of analytic unity. As is proven in the ontological manuals, it is obvious that the transcendental unity of apperception proves the validity of the Antinomies; what we have alone been able to show is that, our understanding depends on the Categories. It remains a mystery why the Ideal stands in need of reason. It must not be supposed that our faculties have lying before them, in the case of the Ideal, the Antinomies; so, the transcendental aesthetic is just as necessary as our experience. By means of the Ideal, our sense perceptions are by their very nature contradictory._
