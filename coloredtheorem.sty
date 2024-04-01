@@ -13,40 +13,43 @@
 %% version 2006/05/20 or later.
 %%
 \NeedsTeXFormat{LaTeX2e}[2020/06/01]
-\ProvidesPackage{tcbtheorem}
+\ProvidesPackage{coloredtheorem}
   [2024/03/31 v1.0 - a theorem-like environment inside a tcolobox]
 
-\RequirePackage[breakable]{tcolorbox}
+\RequirePackage{tcolorbox}
+\tcbuselibrary{breakable}
 
-\NewDocumentCommand {\tcbnewtheorem} { m m O{} }{%
-  \expandafter\newcounter\expandafter{tcb#1}%
-  \expandafter\gdef\csname tcb#1name\endcsname{#2}%
-  \expandafter\gdef\csname tcblist#1name\endcsname{List of #2s}%
-  \expandafter\gdef\csname #1autorefname\endcsname{#2}%
+\gdef\tcbth{cth}
+
+\expandafter\NewDocumentCommand\csname\tcbth newtheorem\endcsname { m m O{} }{%
+  \expandafter\newcounter\expandafter{\tcbth#1}%
+  \expandafter\gdef\csname\tcbth#1name\endcsname{#2}%
+  \expandafter\gdef\csname\tcbth list#1name\endcsname{List of #2s}%
+  \expandafter\gdef\csname#1autorefname\endcsname{#2}%
   \AtEndPreamble{%
-      \ifdefined\crefname\expandafter\crefname\expandafter{tcb#1}{#2}{#2s}\fi}%
-  \expandafter\gdef\csname tcblistof#1s\endcsname
+      \ifdefined\crefname\expandafter\crefname\csname\tcbth#1\endcsname{#2}{#2s}\fi}%
+  \expandafter\gdef\csname\tcbth listof#1s\endcsname
   {%
-    \section*{\csname tcblist#1name\endcsname}%
+    \section*{\csname\tcbth list#1name\endcsname}%
     \expandafter\@starttoc\expandafter{lo#1}%
   }
-  \expandafter\NewDocumentEnvironment\expandafter{tcb#1} {O{} m O{}}%
+  \expandafter\NewDocumentEnvironment\expandafter{\tcbth#1} {O{} m O{}}%
   {% \begin{tcb<SOMETHING>}
     \begin{center}%
       \ifx\relax##1\relax
         \ifx\relax##2\relax\else
-          \expandafter\refstepcounter\expandafter{tcb#1}%
+          \expandafter\refstepcounter\expandafter{\tcbth#1}%
           \expandafter\addcontentsline\expandafter{lo#1}{subsection}
-                        {\protect\numberline{\csname thetcb#1\endcsname}##2}%
+                        {\protect\numberline{\csname the\tcbth#1\endcsname}##2}%
         \fi
       \else
         \expandafter\addcontentsline\expandafter{lo#1}{subsection}
-                        {\protect\numberline{\csname thetcb#1\endcsname}##1}%
+                        {\protect\numberline{\csname the\tcbth#1\endcsname}##1}%
       \fi
       \begin{tcolorbox}[breakable,
-                        title={\textbf{\csname tcb#1name\endcsname
+                        title={\textbf{\csname\tcbth#1name\endcsname
                                \ifx\relax##2\relax\else
-                                   ~\csname thetcb#1\endcsname\fi}~~##2},
+                                   ~\csname the\tcbth#1\endcsname\fi}~~##2},
                         #3, ##3,
                        ]%
   }{% \end{tcb<SOMETHING>}

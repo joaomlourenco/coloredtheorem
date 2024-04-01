@@ -1,5 +1,8 @@
 \documentclass{article}
 
+\usepackage[margin=1.6in]{geometry}
+\usepackage{fancyvrb}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% AMSMATH stuff
 % \usepackage{amsthm}
@@ -9,7 +12,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% TCBTHEOREM stuff
-\usepackage{tcbtheorem}
+\usepackage{coloredtheorem}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -18,7 +21,7 @@
 \usepackage{kantlipsum}
 \usepackage{tabularx}
 \usepackage{xspace}
-\newcommand\tcthrm{\texttt{tcbtheorem}\xspace}
+\newcommand\tcthrm{\texttt{coloredtheorem}\xspace}
 
 %% ALGPSEUDOCODEX stuff
 \usepackage{algorithm}
@@ -55,25 +58,35 @@
 \section{Introduction}
 \label{sec:introduction}
 
-The \tcthrm package is a simple environment, which takes no options, and that allows to write stuff inside boxes from \texttt{tcolorbox}.  So, this packages includes \texttt{tcolorbox}.
+The \tcthrm package is a simple environment, which takes no options, and that allows to write stuff inside boxes from \texttt{tcolorbox}.  So, this packages includes \texttt{tcolorbox} if necessary. You may include \texttt{tcolorbox} with your own favourite options prior to including this package.
 
 Akin to \verb!\newtheorem! from the \verb!amsmath! package, the user should start by defining a new \emph{theorem/box} group and customize its aspect. Each new environment will have its own counter/numnering. Notice that \verb!\label{…}! and \verb!\ref{…}! work as expected.  The is also a command to generate the corresponding \emph{list of …}
 
-\section{Commands}
-\label{sec:commands}
+\section{Usage}
+\label{sec:usage}
 
 \begin{description}
-  \item[]{\bfseries\verb+\tcbnewtheorem{<envname>}{<Name>}[tcolorbox options]+}\\
-      \verb!<envname>! is the environment name, e.g., \verb!theorem!.\\
-      \verb!<Name>! is the name for new environment being defined, e.g., \emph{Theorem}.\\
-      \verb!tcolorbox options! options to be passed to the \verb!tcolorbox! environment to customize the boxes for the given environment (this argument is optional).
-  \item[]{\bfseries\verb+\begin{<envname>}{<Caption>}[tcolorbox options]<Contents>\end{<envname>}+}\\
-      \verb!<envname>! is the environment name, e.g., \verb!theorem!.\\
-      \verb!<Caption>! is the caption/title of the box.\\
-      \verb!tcolorbox options! options to be passed to the \verb!tcolobox! environment, which will override the defaults given in \verb!\tcbnewtheorem!.\\
-      \verb!<Contents>! the contents to by typeset inside the coulored environment.\\
-  \item[]{\bfseries\verb+\listof<envname>s+}\\
-      \verb!<envname>! is the environment name, e.g., e.g., \verb!\listoftheorems!.  Please notice that there is a `s' (plural) after \verb!<envname>!, .
+  \item[]{\bfseries\verb+\usepackage{coloredtheorem}+}
+  \begin{description}
+      \item[]Load the \texttt{coloredtheorem} package.  This package will load \texttt{tcolorbox} if necessary.
+  \end{description}
+  \item[]{\bfseries\Verb[commandchars=!()]+\!tcbth()newtheorem{<envname>}{<Name>}[<tcolorbox options>]+}
+  \begin{description}
+      \item[]\verb+<envname>+ is the environment name, e.g., \verb!theorem!.
+      \item[]\verb+<Name>+ is the name for new environment being defined, e.g., \emph{Theorem}.
+      \item[]\verb+<tcolorbox options>+ options to be passed to the \verb+tcolorbox+ environment to customize the boxes for the given environment (this argument is optional).
+  \end{description}
+  \item[]{\bfseries\Verb[commandchars=!()]+\begin{!tcbth()<envname>}{<Caption>}[<tcolorbox options>]<Contents>\end{!tcbth()<envname>}+}
+  \begin{description}
+    \item[]\verb+<envname>+ is the environment name, e.g., \verb+theorem+.
+    \item[]\verb+<Caption>+ is the caption/title of the box.
+    \item[]\verb+<tcolorbox options>+ options to be passed to the \verb+tcolobox+ environment, which will override the defaults given in \verb+\cthnewtheorem+.
+    \item[]\verb+<Contents>+ the contents to by typeset inside the coulored environment.
+  \end{description}
+  \item[]{\bfseries\Verb[commandchars=!()]+\!tcbth()listof<envname>s+}
+  \begin{description}
+      \item[]\verb+<envname>+ is the environment name, e.g., e.g., \Verb[commandchars=!()]+\!tcbth()listoftheorems+.  Please notice that there is a `s' (plural) after \verb+<envname>+.
+  \end{description}
 \end{description}
 
 \section{Example}
@@ -82,18 +95,28 @@ Akin to \verb!\newtheorem! from the \verb!amsmath! package, the user should star
 Let's start by creating two new environments, one for \emph{algorithms} and another for \emph{examples}, both defaulting to a gray frame, the former with a yellowish background and the latter with a lighter gray background.
 
 \begin{verbatim}
-\tcbnewtheorem{algorithm}{Algorithm}[coltitle=black, colback=yellow!10,
-                                    colframe=black!15]
-\tcbnewtheorem{example}{Example}[coltitle=black, colback=black!5,
-                                 colframe=black!30]  
+\cthnewtheorem{algorithm}{Algorithm}[coltitle=black, colback=yellow!10,
+                                       colframe=black!15]
+\cthnewtheorem{example}{Example}[coltitle=black, colback=black!5,
+                                   colframe=black!30]  
 \end{verbatim}
 
-\tcbnewtheorem{algorithm}{Algorithm}[coltitle=black, colback=yellow!10, colframe=black!15]
-\tcbnewtheorem{example}{Example}[coltitle=black, colback=black!5, colframe=black!30]
+\cthnewtheorem{algorithm}{Algorithm}[coltitle=black, colback=yellow!10, colframe=black!15]
+\cthnewtheorem{example}{Example}[coltitle=black, colback=black!5, colframe=black!30]
+
+
+An algorithm box will be created with:
+\begin{verbatim}
+\begin{cthalgorithm}{Advance a counter to the next value in a domain
+                    $\omega \in \mathbb{N}$.}
+
+Algorithm body here!
+\end{cthalgorithm}
+\end{verbatim}
 
 \newcommand{\bracesemptyset}{\ensuremath{\lbrace\,\rbrace}}
 
-\begin{tcbalgorithm}{Advance a counter to the next value in a domain $\omega \in \mathbb{N}$.}
+\begin{cthalgorithm}{Advance a counter to the next value in a domain $\omega \in \mathbb{N}$.}
   \label{alg:advance1}
 \begin{algorithmic}[1]
   \Statex \Input $\alpha$: The current value; and $\omega$: the domain.
@@ -120,11 +143,11 @@ Let's start by creating two new environments, one for \emph{algorithms} and anot
                     \Comment{\color{red} the next value (or the last value plus one if no more values)}
   \EndFunction
 \end{algorithmic}
-\end{tcbalgorithm}
+\end{cthalgorithm}
 
-Now, lets rewrite \autoref{alg:advance1}, but now with a different customized visual, just for this entry!  The customization (3rd) argument is passed directly to the \texttt{tcolorbox} environment, so anything valid for \texttt{tcolorbox} is also valid here.
+Now, let's rewrite \autoref{alg:advance1}, but now with a different customized visual, just for this entry!  The customization (3rd) argument is passed straight to the \texttt{tcolorbox} environment, so anything valid for \texttt{tcolorbox} is also valid here.
 
-\begin{tcbalgorithm}{Advance a counter to the next value in a domain $\omega \in \mathbb{N}$, but now with a customized visual. Also, notice that this algorithm breaks the page boundaries.}[coltitle=white, colback=green!10, colframe=green!70!black, fonttitle=\sffamily\bfseries\large, colbacktitle=red!50!white]
+\begin{cthalgorithm}{Advance a counter to the next value in a domain $\omega \in \mathbb{N}$, but now with a customized visual. Also, notice that this algorithm breaks the page boundaries.}[coltitle=white, colback=green!10, colframe=green!70!black, fonttitle=\sffamily\bfseries\large, colbacktitle=red!50!white]
   \label{alg:advance2}
 \begin{algorithmic}[1]
   \Statex \Input $\alpha$: The current value; and $\omega$: the domain.
@@ -151,24 +174,24 @@ Now, lets rewrite \autoref{alg:advance1}, but now with a different customized vi
                     \Comment{\color{red} the next value (or the last value plus one if no more values)}
   \EndFunction
 \end{algorithmic}
-\end{tcbalgorithm}
+\end{cthalgorithm}
 
-Now, let's add an example here, this time using the default visual that was given when creating the environment with \verb!\tcbnewtheorem!…
+Now, let's add an example here, this time using the default visual that was given when creating the environment with \verb+\cthnewtheorem+…
 
-\begin{tcbexample}{This is an example!}
+\begin{cthexample}{This is an example!}
   \emph{\kant[3]}
-\end{tcbexample}
+\end{cthexample}
 
-And now an example with no caption and a different visual…  this example will not go into the \verb!\listofexamples! below!
+And now an example with no caption and a different visual…  this example will not go into the \verb+\listofexamples+ below!
 
-\begin{tcbexample}{}[coltitle=yellow, colback=blue!30, colframe=blue!70]
+\begin{cthexample}{}[coltitle=yellow, colback=blue!30, colframe=blue!70]
   \emph{\kant[4]}
-\end{tcbexample}
+\end{cthexample}
 
-Now let's print the lists of algorithms and examples. Remember to add the prefix \texttt{tcb} to the \texttt{listof}, i.e., \verb!\tcblistofalgorithms! anf \verb!\tcblistofexamples!!
+Now let's print the lists of algorithms and examples. Remember to add the prefix \texttt{cthth} to the \texttt{listof}, i.e., \verb+\cthlistofalgorithms+ and \verb+\cthlistofexamples+!
 
-\tcblistofalgorithms
+\cthlistofalgorithms
 
-\tcblistofexamples
+\cthlistofexamples
 
 \end{document}
