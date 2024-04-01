@@ -3,6 +3,7 @@
 
 tcbtheorem-doc.*
 !tcbtheorem-doc.tex
+.tcbtheorem-doc.*
 
 ### LaTeX ###
 ## Core latex/pdflatex auxiliary files:
