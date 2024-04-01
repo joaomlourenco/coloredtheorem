@@ -1,8 +1,8 @@
 # Created by https://www.toptal.com/developers/gitignore/api/macos,windows,linux,tex,latex
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,windows,linux,tex,latex
 
-tcbtheorem-tutorial.*
-!tcbtheorem-tutorial.tex
+tcbtheorem-doc.*
+!tcbtheorem-doc.tex
 
 ### LaTeX ###
 ## Core latex/pdflatex auxiliary files:

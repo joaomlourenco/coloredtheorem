@@ -79,7 +79,14 @@ Akin to \verb!\newtheorem! from the \verb!amsmath! package, the user should star
 \section{Example}
 \label{sec:examples}
 
-\emph{\kant[1]}
+Let's start by creating two new environments, one for \emph{algorithms} and another for \emph{examples}, both defaulting to a gray frame, the former with a yellowish background and the latter with a lighter gray background.
+
+\begin{verbatim}
+\tcbnewtheorem{algorithm}{Algorithm}[coltitle=black, colback=yellow!10,
+                                    colframe=black!15]
+\tcbnewtheorem{example}{Example}[coltitle=black, colback=black!5,
+                                 colframe=black!30]  
+\end{verbatim}
 
 \tcbnewtheorem{algorithm}{Algorithm}[coltitle=black, colback=yellow!10, colframe=black!15]
 \tcbnewtheorem{example}{Example}[coltitle=black, colback=black!5, colframe=black!30]
@@ -115,9 +122,9 @@ Akin to \verb!\newtheorem! from the \verb!amsmath! package, the user should star
 \end{algorithmic}
 \end{tcbalgorithm}
 
-Now, lets write again \autoref{alg:advance1}, but now with a different visual!
+Now, lets rewrite \autoref{alg:advance1}, but now with a different customized visual, just for this entry!  The customization (3rd) argument is passed directly to the \texttt{tcolorbox} environment, so anything valid for \texttt{tcolorbox} is also valid here.
 
-\begin{tcbalgorithm}{Advance a counter to the next value in a domain $\omega \in \mathbb{N}$, but now with a customized visual. Also, notice that this algorithm breaks the page boundaries.}[coltitle=white, colback=green!10, colframe=blue!70]
+\begin{tcbalgorithm}{Advance a counter to the next value in a domain $\omega \in \mathbb{N}$, but now with a customized visual. Also, notice that this algorithm breaks the page boundaries.}[coltitle=white, colback=green!10, colframe=green!70!black, fonttitle=\sffamily\bfseries\large, colbacktitle=red!50!white]
   \label{alg:advance2}
 \begin{algorithmic}[1]
   \Statex \Input $\alpha$: The current value; and $\omega$: the domain.
@@ -146,9 +153,7 @@ Now, lets write again \autoref{alg:advance1}, but now with a different visual!
 \end{algorithmic}
 \end{tcbalgorithm}
 
-\emph{\kant[2]}
-
-Finally, let's add another example here, this time using the default visual that was given when creating the environment with \verb!\tcbnewtheorem!…
+Now, let's add an example here, this time using the default visual that was given when creating the environment with \verb!\tcbnewtheorem!…
 
 \begin{tcbexample}{This is an example!}
   \emph{\kant[3]}
@@ -160,7 +165,7 @@ And now an example with no caption and a different visual…  this example will 
   \emph{\kant[4]}
 \end{tcbexample}
 
-Now we get the lists of algorithms (\verb!\tcblistofalgorithms!) and examples (\verb!\tcblistofexamples!). Remember to add the prefix \verb!tcb!!
+Now let's print the lists of algorithms and examples. Remember to add the prefix \texttt{tcb} to the \texttt{listof}, i.e., \verb!\tcblistofalgorithms! anf \verb!\tcblistofexamples!!
 
 \tcblistofalgorithms
 
