@@ -34,6 +34,8 @@ The `coloredtheorem` package is a simple environment, which takes no options, an
 
 Akin to `\newtheorem` from the `amsmath` package, the user should start by defining a new theorem/box group and customize its aspect. Each new environment will have its own counter/numnering. Notice that `\label{...}` and `\ref{...}` work as expected. The is also a command to generate the corresponding `\listof...`
 
+_If you are planing to write your thesis and need a template, check out [NOVAthesis](https://github.com/joaomlourenco/coloredtheorem) (from the same author as this package)!_
+
 ## Usage
 
 * `\cthnewtheorem{<envname>}{<Name>}[<tcolorbox options>]`
