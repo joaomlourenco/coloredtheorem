@@ -45,7 +45,7 @@ This package takes no options and includes `tcolorbox` if necessary. You may inc
 
 Akin to `\newtheorem` from the `amsmath` package, the user should start by defining a 
 new _theorem/box_ group and customize its aspect. Each new environment will have its 
-own counter/numnering. Notice that `\label{...}` and `\ref{...}` work as expected. 
+own counter/numbering. Notice that `\label{...}` and `\ref{...}` work as expected. 
 There is also a command to generate the corresponding _\listof..._
 
 ## Usage
