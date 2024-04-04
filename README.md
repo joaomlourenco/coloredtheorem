@@ -1,6 +1,6 @@
 # coloredtheorem
 
-A LaTeX package with a colourful boxed theorem environment, combining `tcolorbox` and breakable boxes.  It supports full `tcolorbox` customization, automatic numbering, `\label{...}` and `\ref{…}`, and `\listof…`
+A colorful boxed theorem environment, combining `tcolorbox` and breakable boxes.  It supports full `tcolorbox` customization, automatic numbering, `\label{...}` and `\ref{…}`, and `\listof…`
 
 <!--
 --------
@@ -28,71 +28,104 @@ A LaTeX package with a colourful boxed theorem environment, combining `tcolorbox
 --------
 -->
 
+## About
+
+**Package:** coloredtheorem — A colorful boxed theorem environment
+**Copyright:** 2024 © João M. Lourenço <joao.lourenco@fct.unl.pt>
+**CTAN:** https://ctan.org/pkg/coloredtheorem
+**Repository:** https://github.com/joaomlourenco/coloredtheorem
+**License:** The LaTeX Project Public License 1.3c
+
 ## Introduction
 
-The `coloredtheorem` package is a simple environment, which takes no options, and that allows to write stuff inside boxes from `tcolorbox`. So, this packages includes `tcolorbox` if necessary. You may include `tcolorbox` with your own favourite options prior to including this package.
+The `coloredtheorem` package is a simple environment that allows to write stuff inside
+boxes from `tcolorbox`. If necessary the boxes gracefully overflow to the next page.
+This package takes no options and includes `tcolorbox` if necessary. You may include
+`tcolorbox` with your own favourite options prior to including this package.
 
-Akin to `\newtheorem` from the `amsmath` package, the user should start by defining a new theorem/box group and customize its aspect. Each new environment will have its own counter/numnering. Notice that `\label{...}` and `\ref{...}` work as expected. The is also a command to generate the corresponding `\listof...`
-
-_If you are planing to write your thesis and need a template, check out [NOVAthesis](https://github.com/joaomlourenco/coloredtheorem) (from the same author as this package)!_
+Akin to `\newtheorem` from the `amsmath` package, the user should start by defining a 
+new _theorem/box_ group and customize its aspect. Each new environment will have its 
+own counter/numnering. Notice that `\label{...}` and `\ref{...}` work as expected. 
+There is also a command to generate the corresponding _\listof..._
 
 ## Usage
 
+* `\usepackage{coloredtheorem}`
+  * Load Load the `coloredtheorem` package. This package will load `tcolorbox` if necessary.
 * `\cthnewtheorem{<envname>}{<Name>}[<tcolorbox options>]`
-  * Load the tcbtheorem package. This package will load tcolorbox if not already loaded.
-* `\cthnewtheorem{<envname>}{<Name>}[<tcolorbox options>]`
-  * `<envname>` is the environment name, e.g., theorem.
-  * `<Name>` is the name for new environment being defined, e.g., Theorem.
-  * `<tcolorbox options>` options to be passed to the `tcolorbox` environment to customize the boxes for the given environment (this argument is optional).
+  * Create a new boxed algorithm-like environment.
+    * `<envname>` is the suffix for the new environment being defined, e.g., `algoritm`. The effective environment name will be `cth<envname>`, e.g., `cthalgorithm`.
+    * `<Name>` is the (printable) name or the new environment being defined, e.g., _Algorithm_.
+    * `<tcolorbox options>` default options for the environment being defined (this argument is optional). These options are passed straight to the `tcolorbox` environment, so anything valid for `tcolorbox` is also valid here.
 * `\begin{<envname>}{<Caption>}[<tcolorbox options>]<Contents>\end{<envname>}`
-  * `<envname>` is the environment name, e.g., theorem.
-  * `<Caption>` is the caption/title of the box.
-  * `<tcolorbox options>` options to be passed to the `tcolorbox` environment, which will override the defaults given in `\cthnewtheorem`.
-  * `<Contents>` the contents to by typeset inside the coulored environment.
+  * Create a new _algorithm-like_ box with the given contents.
+    ∗ `<AltCaption>` is the alternative caption for the `\cthlistof<envname>s` (see below).
+    * `<envname>` is the sffix for environment name, e.g., `algorithm`.
+    * `<Caption>` is the caption/title of the box. If the caption is left empty, this box will not be listed with the `\cthlistof<envname>s` (see below).
+    * `<tcolorbox options>` options to be passed to the `tcolorbox` environment, which will override the defaults given in `\cthnewalgorithm` (this argument is optional).
+    * `<Contents>` the contents to by typeset inside the colored environment.
 * `\listof<envname>s`
-  * Where `<envname>` is the environment name, e.g., `\listoftheorems`. Please notice that there is a ‘s’ (plural) after `<envname>`.
+  * `<envname>` is the environment name suffix, e.g., `\cthlistofalgorithms`. Please
+notice that there is a ‘s’ (plural) after `<envname>`.
 
 ## Example
 
-Let’s start by creating two new environments, one for algorithms and another for examples, both defaulting to a gray frame, the former with a yellowish background and the latter with a lighter gray background.
+Let’s start by creating two new environments, one for _algorithms_ and another for _examples_, both defaulting to a gray frame, the former with a yellowish background and the latter with a lighter gray background.
 
-    \cthnewtheorem{algorithm}{Algorithm}[coltitle=black, colback=yellow!10,
-                                         colframe=black!15]
-    \cthnewtheorem{example}{Example}[coltitle=black, colback=black!5,
-                                     colframe=black!30]
+```latex
+\cthnewtheorem{algorithm}{Algorithm}[coltitle=black, colback=yellow!10,
+                                     colframe=black!15]
+\cthnewtheorem{example}{Example}[coltitle=black, colback=black!5,
+                                 colframe=black!30]
+```
 
-An algorithm box will be created with:
+The box with Algorithm 1, which uses the default visual that was given when creating the environment with `\cthnewtheorem` and gracefully overflows onto the next page, was created with:
 
-    \begin{cthalgorithm}{Advance a counter to the next value in a domain
-                        $\omega \in \mathbb{N}$.}
+```latex
+\begin{cthalgorithm}{Advance a counter to the next value in a domain
+                    $\omega \in \mathbb{N}$.}
 
-        Algorithm body here!
-    \end{cthalgorithm}
+    Algorithm body here!
+\end{cthalgorithm}
+```
 
-<img width="491" alt="image" src="https://github.com/joaomlourenco/tcbtheorem/assets/2064643/54147631-3f5d-4ae0-a8b7-8b18b48d8db2">
+<!---->
 
-Now, let's rewrite Algorithm 1, but now with a different customized visual, just for this entry! The customization (3rd) argument is passed straight to the `tcolorbox` environment, so anything valid for `tcolorbox` is also valid here.
+The box Example 1, which uses the default visual for the environment (as given to `\cthnewtheorem...`), was created with:
 
-<img width="491" alt="image" src="https://github.com/joaomlourenco/tcbtheorem/assets/2064643/be180e78-bc59-48ff-9efa-a26af5dae0bd">
+```latex
+\begin{cthexample}{This is an example!}
+  Example body here!
+\end{cthexample}
+```
 
-(page break here!)
+<!---->
 
-<img width="489" alt="image" src="https://github.com/joaomlourenco/tcbtheorem/assets/2064643/04c6fcaa-1a27-4550-8b17-2ae4d90809b0">
+Now, let’s create a new box for Algorithm 1, but with a different customized visual, which will affect only this entry! Notice that the customization argument is passed straight to the `tcolorbox` environment, so anything valid for `tcolorbox` is also valid here. Algorithm 2 was created with the following code:
 
-Now, let’s add an example here, this time using the default visual that was given when creating the environment with `\cthnewtheorem`…
+```latex
+\begin{cthalgorithm}
+          {Advance a counter to the next value in a domain $\omega \in
+                \mathbb{N}$, but now with a customized visual. Also, notice
+                that this algorithm breaks the page boundaries.}
+          [coltitle=white, colback=green!10, colframe=green!70!black,
+                colbacktitle=\sffamily\bfseries\large, fonttitle=red!50!white]
+  Algorithm body here!
+\end{cthalgorithm}
+```
 
-<img width="490" alt="image" src="https://github.com/joaomlourenco/tcbtheorem/assets/2064643/835c1537-5b18-48b6-8ac1-ba6a6cff7b1b">
+<!---->
 
 And now and example with no caption and a different visual... this example will not go into the` \listofexamples` below!
 
-<img width="492" alt="image" src="https://github.com/joaomlourenco/tcbtheorem/assets/2064643/329e61a9-a12b-4cfe-9edf-1977f8158ee9">
+<!---->
 
-Now let’s print the lists of algorithms and examples. Remember to add the prefix cthth to the listof, i.e., `\cthlistofalgorithms` and `\cthlistofexamples`!
+Now let’s print the lists of algorithms and examples. Remember to add the prefix `cthth` to the `listof`, i.e., `\cthlistofalgorithms` and `\cthlistofexamples`!
 
 ## List of Algorithms
-<img width="492" alt="image" src="https://github.com/joaomlourenco/tcbtheorem/assets/2064643/f935bfcb-3387-426e-8511-c1f0efdcdd85">
+<!---->
 
 ## List of Examples
-<img width="487" alt="image" src="https://github.com/joaomlourenco/tcbtheorem/assets/2064643/033f83d4-24c3-4e9d-8947-135f5765e3f3">
+<!---->
 
 
