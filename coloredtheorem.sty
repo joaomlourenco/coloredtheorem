@@ -1,4 +1,4 @@
-%% This is file `tcbtheorem.sty',
+%% This is file `coloredtheorem.sty',
 %%
 %% Copyright (C) 2024 by João Lourenço <joao.lourenco@fct.unl.pt>
 %%
@@ -14,7 +14,7 @@
 %%
 \NeedsTeXFormat{LaTeX2e}[2020/06/01]
 \ProvidesPackage{coloredtheorem}
-  [2024/03/31 v1.0 - a theorem-like environment inside a tcolobox]
+  [2024/04/03 v1.0.2 - A colorful boxed theorem environment]
 
 \RequirePackage{tcolorbox}
 \tcbuselibrary{breakable}
@@ -36,15 +36,16 @@
   \expandafter\NewDocumentEnvironment\expandafter{\tcbth#1} {O{} m O{}}%
   {% \begin{tcb<SOMETHING>}
     \begin{center}%
-      \ifx\relax##1\relax
-        \ifx\relax##2\relax\else
-          \expandafter\refstepcounter\expandafter{\tcbth#1}%
+      \ifx\relax##2\relax
+      \else
+        \expandafter\refstepcounter\expandafter{\tcbth#1}%
+        \ifx\relax##1\relax
           \expandafter\addcontentsline\expandafter{lo#1}{subsection}
                         {\protect\numberline{\csname the\tcbth#1\endcsname}##2}%
-        \fi
-      \else
-        \expandafter\addcontentsline\expandafter{lo#1}{subsection}
+        \else
+          \expandafter\addcontentsline\expandafter{lo#1}{subsection}
                         {\protect\numberline{\csname the\tcbth#1\endcsname}##1}%
+        \fi
       \fi
       \begin{tcolorbox}[breakable,
                         title={\textbf{\csname\tcbth#1name\endcsname
