@@ -14,7 +14,7 @@
 %%
 \NeedsTeXFormat{LaTeX2e}[2020/06/01]
 \ProvidesPackage{coloredtheorem}
-  [2024/04/03 v1.0.2 - A colorful boxed theorem environment]
+  [2024/09/15 v1.0.4 - A colorful boxed theorem environment]
 
 \RequirePackage{tcolorbox}
 \tcbuselibrary{breakable}
@@ -27,10 +27,11 @@
   \expandafter\gdef\csname\tcbth list#1name\endcsname{List of #2s}%
   \expandafter\gdef\csname#1autorefname\endcsname{#2}%
   \AtEndPreamble{%
-      \ifdefined\crefname\expandafter\crefname\csname\tcbth#1\endcsname{#2}{#2s}\fi}%
+      \ifdefined\crefname\expandafter\crefname\expandafter{\tcbth#1}{#2}{#2s}\fi}%
   \expandafter\gdef\csname\tcbth listof#1s\endcsname
   {%
-    \section*{\csname\tcbth list#1name\endcsname}%
+    \ifdefined\chapter\chapter*{\csname\tcbth list#1name\endcsname}%
+        \else\section*{\csname\tcbth list#1name\endcsname}\fi%
     \expandafter\@starttoc\expandafter{lo#1}%
   }
   \expandafter\NewDocumentEnvironment\expandafter{\tcbth#1} {O{} m O{}}%
@@ -53,6 +54,9 @@
                                    ~\csname the\tcbth#1\endcsname\fi}~~##2},
                         #3, ##3,
                        ]%
+      \let\origpar=\par%
+      \def\par{\origpar\medskip}%
+      \ignorespaces%
   }{% \end{tcb<SOMETHING>}
        \end{tcolorbox}%
      \end{center}%
