@@ -14,27 +14,34 @@
 %%
 \NeedsTeXFormat{LaTeX2e}[2020/06/01]
 \ProvidesPackage{coloredtheorem}
-  [2024/09/15 v1.0.4 - A colorful boxed theorem environment]
+  [2025/01/03 v1.0.5 - A colorful boxed theorem environment]
 
-\RequirePackage{tcolorbox}
+\RequirePackage[most]{tcolorbox}
 \tcbuselibrary{breakable}
 
 \gdef\tcbth{cth}
 
-\expandafter\NewDocumentCommand\csname\tcbth newtheorem\endcsname { m m O{} }{%
+\NewDocumentCommand{\TcbthNewDocumentCommand}{m}{%
+    \expandafter\NewDocumentCommand\csname\tcbth#1\endcsname}
+\NewDocumentCommand{\TcbthNewDocumentEnvironment}{m}{%
+    \expandafter\NewDocumentEnvironment\expandafter{\tcbth#1}}
+\NewDocumentCommand{\TcbthGdef}{O{\tcbth}mm}{%
+    \expandafter\gdef\csname#1#2\endcsname{#3}}
+
+\TcbthNewDocumentCommand{newtheorem} { m m O{} }{%
   \expandafter\newcounter\expandafter{\tcbth#1}%
-  \expandafter\gdef\csname\tcbth#1name\endcsname{#2}%
-  \expandafter\gdef\csname\tcbth list#1name\endcsname{List of #2s}%
-  \expandafter\gdef\csname#1autorefname\endcsname{#2}%
+  \TcbthGdef{#1name}{#2}%
+  \TcbthGdef{list#1name}{List of #2s}%
+  \TcbthGdef[]{#1autorefname}{#2}%
   \AtEndPreamble{%
       \ifdefined\crefname\expandafter\crefname\expandafter{\tcbth#1}{#2}{#2s}\fi}%
-  \expandafter\gdef\csname\tcbth listof#1s\endcsname
+  \TcbthGdef{listof#1s}
   {%
     \ifdefined\chapter\chapter*{\csname\tcbth list#1name\endcsname}%
         \else\section*{\csname\tcbth list#1name\endcsname}\fi%
     \expandafter\@starttoc\expandafter{lo#1}%
   }
-  \expandafter\NewDocumentEnvironment\expandafter{\tcbth#1} {O{} m O{}}%
+  \TcbthNewDocumentEnvironment{#1} {O{} m O{}}%
   {% \begin{tcb<SOMETHING>}
     \begin{center}%
       \ifx\relax##2\relax
@@ -48,14 +55,14 @@
                         {\protect\numberline{\csname the\tcbth#1\endcsname}##1}%
         \fi
       \fi
-      \begin{tcolorbox}[breakable,
+      \begin{tcolorbox}[breakable,lowerbox=ignored,left=0mm,right=0mm,top=0mm,bottom=0mm,
                         title={\textbf{\csname\tcbth#1name\endcsname
                                \ifx\relax##2\relax\else
                                    ~\csname the\tcbth#1\endcsname\fi}~~##2},
                         #3, ##3,
                        ]%
-      \let\origpar=\par%
-      \def\par{\origpar\medskip}%
+      % \let\origpar=\par%
+      % \def\par{\origpar\medskip}%
       \ignorespaces%
   }{% \end{tcb<SOMETHING>}
        \end{tcolorbox}%
