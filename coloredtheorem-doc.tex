@@ -13,7 +13,7 @@
 \usepackage{kantlipsum}
 \usepackage{tabularx}
 \usepackage{xspace}
-\newcommand\tcthrm{\texttt{coloredtheorem}\xspace}
+\newcommand\tcthrm{\textsf{\cthfilename}\xspace}
 
 %% ALGPSEUDOCODEX stuff
 \usepackage{algorithm}
@@ -40,10 +40,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% MAIN DOCUMENT
 \begin{document}
-  \title{The \tcthrm package {\footnotesize(v1.0.4)}}
-  \author{João M. Lourenço\\\texttt{\small joao.lourenco@fct.unl.pt}}
-  \date{September 15, 2024}
-  
+  \title{The \tcthrm package}
+  \author{João M. Lourenço\\\url{https://github.com/joaomlourenco/coloredtheorem}}
+  \date{\cthfiledate\ (v\cthfileversion)}
+
   \maketitle
   
 
@@ -101,6 +101,27 @@ Akin to \mintinline{TeX}+\newtheorem+ from the \texttt{amsmath} package, the use
             e.g., \verb+algorithm+.
       \item \mintinline[escapeinside=||]{TeX}+|\ca{<Caption>}|+ is the caption/title of
             the box.  If the caption is left empty, this box will not be listed with the
+            \mintinline[escapeinside=||]{TeX}+\cthlistof|\ck{<envname>s}|+
+            (see below).
+      \item \mintinline[escapeinside=||]{TeX}+|\co{<tcolorbox options>}|+ options to be
+            passed to the \verb+tcolorbox+ environment, which will override the defaults
+            given in \mintinline{TeX}+\cthnewalgorithm+  (this argument is optional).
+      \item \mintinline[escapeinside=||]{TeX}+|\cc{<Contents>}|+ the contents to by typeset inside the colored environment.
+    \end{itemize}
+  \end{itemize}
+
+ \item \begin{minted}[escapeinside=||]{TeX}
+\begin{|\ca{ctb<envname>*}|}{|\ca{<Caption>}|}[|\co{<tcolorbox options>}|]
+  |\cc{<Contents>}|
+\end{|\ca{ctb<envname>*}|}
+\end{minted}
+  \begin{itemize}
+    \item Create a new \emph{algorithm-like} box with the given contents.
+    \begin{itemize}
+      \item \mintinline[escapeinside=||]{TeX}+|\ca{<envname>}|+ is the suffix for environment name,
+            e.g., \verb+algorithm+.
+      \item \mintinline[escapeinside=||]{TeX}+|\ca{<Caption>}|+ is the caption/title of
+            the box.  This box will be unnumbered and will not be listed with the
             \mintinline[escapeinside=||]{TeX}+\cthlistof|\ck{<envname>s}|+
             (see below).
       \item \mintinline[escapeinside=||]{TeX}+|\co{<tcolorbox options>}|+ options to be
@@ -237,9 +258,16 @@ Now, let's create a new box for \autoref{alg:advance1}, but with a different cus
 
 And now an example with no caption and a different visual…  this example will not go into the \mintinline{TeX}+\listofexamples+ below!
 
-\begin{cthexample}{}[coltitle=yellow, colback=blue!30, colframe=blue!70]
+\begin{cthexample}{}[coltitle=black, colback=magenta!10, colframe=magenta!20]
   \emph{\kant[4]}
 \end{cthexample}
+
+And another unnumbered example using an alternative syntax:
+
+
+\begin{cthexample*}{This is an unnumbered example with a title}[coltitle=black, colback=yellow!10, colframe=yellow!20]
+  \emph{\kant[4]}
+\end{cthexample*}
 
 Now let's print the lists of algorithms and examples. Remember to add the prefix \ck{\texttt{cth}} to the \ck{\texttt{listof}}, i.e., \mintinline{TeX}+\cthlistofalgorithms+ and \mintinline{TeX}+\cthlistofexamples+!
 

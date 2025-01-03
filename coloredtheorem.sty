@@ -12,9 +12,12 @@
 %% and version 1.3c or later is part of all distributions of LaTeX
 %% version 2006/05/20 or later.
 %%
-\NeedsTeXFormat{LaTeX2e}[2020/06/01]
-\ProvidesPackage{coloredtheorem}
-  [2025/01/03 v1.0.5 - A colorful boxed theorem environment]
+\def\cthfileversion{1.0.5}
+\def\cthfiledate   {2025/01/03}
+\edef\cthfilename  {\@currname}
+
+\ProvidesPackage{coloredtheorem}[%
+  \cthfiledate\  v\cthfileversion (João M. Lourenço) - A colorful boxed theorem environment.]
 
 \RequirePackage[most]{tcolorbox}
 \tcbuselibrary{breakable}
@@ -59,6 +62,20 @@
                         title={\textbf{\csname\tcbth#1name\endcsname
                                \ifx\relax##2\relax\else
                                    ~\csname the\tcbth#1\endcsname\fi}~~##2},
+                        #3, ##3,
+                       ]%
+      % \let\origpar=\par%
+      % \def\par{\origpar\medskip}%
+      \ignorespaces%
+  }{% \end{tcb<SOMETHING>}
+       \end{tcolorbox}%
+     \end{center}%
+  }%
+  \TcbthNewDocumentEnvironment{#1*} {O{} m O{}}%
+  {% \begin{tcb<SOMETHING>}
+    \begin{center}%
+      \begin{tcolorbox}[breakable,lowerbox=ignored,left=0mm,right=0mm,top=0mm,bottom=0mm,
+                        title={\textbf{\csname\tcbth#1name\endcsname}~~##2},
                         #3, ##3,
                        ]%
       % \let\origpar=\par%
