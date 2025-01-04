@@ -140,6 +140,7 @@ Akin to \mintinline{TeX}+\newtheorem+ from the \texttt{amsmath} package, the use
   \end{itemize}
 \end{itemize}
 
+\clearpage
 \section{Example}
 \label{sec:examples}
 
@@ -154,9 +155,12 @@ Let's start by creating two new environments, one for \emph{algorithms} and anot
 
 \cthnewtheorem{algorithm}{Algorithm}[coltitle=black, colback=yellow!10, colframe=black!15]
 \cthnewtheorem{example}{Example}[coltitle=black, colback=black!5, colframe=black!30]
-\cthnewtheorem{thought}{Though}[enhanced, coltitle=green!60!black, colbacktitle=green!10, colback=green!10, frame hidden, boxrule=0pt, attach title to upper={\\[0.5ex]}, borderline west={1mm}{-2mm}{green!60!black},]
+\cthnewtheorem{thought}{Though}[enhanced, coltitle=green!60!black, colbacktitle=green!10, 
+                                colback=green!10, frame hidden, boxrule=0pt, 
+                                attach title to upper={\\[0.5ex]}, 
+                                borderline west={1mm}{-2mm}{green!60!black}]
 
-Anf this is a thought!
+And this is a thought!
 \begin{cththought}{This is a tought}
 \kant[2]
 \end{cththought}

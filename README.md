@@ -77,7 +77,15 @@ Let’s start by creating two new environments, one for _algorithms_ and another
                                      colframe=black!15]
 \cthnewtheorem{example}{Example}[coltitle=black, colback=black!5,
                                  colframe=black!30]
+\cthnewtheorem{thought}{Though}[enhanced, coltitle=green!60!black, 
+                                colbacktitle=green!10, colback=green!10,
+                                frame hidden, boxrule=0pt,
+                                attach title to upper={\\[0.5ex]}, 
+                                borderline west={1mm}{-2mm}{green!60!black}]
 ```
+
+And this is a shiny thought!
+
 
 The box with Algorithm 1, which uses the default visual that was given when creating the environment with `\cthnewtheorem` and gracefully overflows onto the next page, was created with:
 
