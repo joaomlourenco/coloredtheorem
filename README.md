@@ -86,6 +86,7 @@ Let’s start by creating two new environments, one for _algorithms_ and another
 
 And this is a shiny thought!
 
+<img width="650" alt="image of a thought" src="https://github.com/user-attachments/assets/d55c5281-b95a-4dc1-bf33-7b0ffc0c4b3e" />
 
 The box with Algorithm 1, which uses the default visual that was given when creating the environment with `\cthnewtheorem` and gracefully overflows onto the next page, was created with:
 
@@ -97,11 +98,11 @@ The box with Algorithm 1, which uses the default visual that was given when crea
 \end{cthalgorithm}
 ```
 
-<img width="650" alt="image" src="https://github.com/joaomlourenco/coloredtheorem/assets/2064643/fa9cacce-89cc-4973-ac16-41a6e21dfded">
+<img width="650" alt="image of an algorithm - pt1" src="https://github.com/joaomlourenco/coloredtheorem/assets/2064643/fa9cacce-89cc-4973-ac16-41a6e21dfded">
 
 _(page break here)_
 
-<img width="650" alt="image" src="https://github.com/joaomlourenco/coloredtheorem/assets/2064643/bc976d1a-2d7d-4f62-b651-4b23124d8d76">
+<img width="650" alt="image of an algorithm - pt2" src="https://github.com/joaomlourenco/coloredtheorem/assets/2064643/bc976d1a-2d7d-4f62-b651-4b23124d8d76">
 
 
 The box Example 1, which uses the default visual for the environment (as given to `\cthnewtheorem...`), was created with:
@@ -112,7 +113,7 @@ The box Example 1, which uses the default visual for the environment (as given t
 \end{cthexample}
 ```
 
-<img width="650" alt="image" src="https://github.com/joaomlourenco/coloredtheorem/assets/2064643/69bd5bbd-8da8-418f-805d-0837c62cfb2c">
+<img width="650" alt="image of an example" src="https://github.com/joaomlourenco/coloredtheorem/assets/2064643/69bd5bbd-8da8-418f-805d-0837c62cfb2c">
 
 Now, let’s create a new box for Algorithm 1, but with a different customized visual, which will affect only this entry! Notice that the customization argument is passed straight to the `tcolorbox` environment, so anything valid for `tcolorbox` is also valid here. Algorithm 2 was created with the following code:
 
@@ -127,15 +128,31 @@ Now, let’s create a new box for Algorithm 1, but with a different customized v
 \end{cthalgorithm}
 ```
 
-<img width="650" alt="image" src="https://github.com/joaomlourenco/coloredtheorem/assets/2064643/977c371c-1ecb-43ca-9351-c4befc23f7e9">
+<img width="650" alt="image of another algorithm - pt1" src="https://github.com/joaomlourenco/coloredtheorem/assets/2064643/977c371c-1ecb-43ca-9351-c4befc23f7e9">
 
 _(page break here)_
 
-<img width="650" alt="image" src="https://github.com/joaomlourenco/coloredtheorem/assets/2064643/c51ac463-c335-4132-9445-cb726ee616a1">
+<img width="650" alt="image of another algorithm - pt2" src="https://github.com/joaomlourenco/coloredtheorem/assets/2064643/c51ac463-c335-4132-9445-cb726ee616a1">
 
 And now and example with no caption and a different visual... this example will not go into the` \listofexamples` below!
 
-<img width="766" alt="image" src="https://github.com/joaomlourenco/coloredtheorem/assets/2064643/ab888abf-56ba-459d-aa94-2db9816d0a09">
+```latex
+\begin{cthexample}{}[coltitle=black, colback=magenta!10, colframe=magenta!20]
+  Example body here!
+\end{cthexample}
+```
+
+<img width="650" alt="image on an algorithm with no caption" src="https://github.com/user-attachments/assets/1e798c4f-e029-4901-9d63-9ca8839e2208" />
+
+And yet another unnumbered example, this one using the alternative (`star`) syntax. This example will not go into the `\listofexamples` below as well!
+
+```latex
+\begin{cthexample*}{This is an unnumbered example with a title}[coltitle=black, colback=yellow!10, colframe=yellow!20]
+  Example body here!
+\end{cthexample*}
+```
+
+<img width="650" alt="image on an algorithm with no caption using the star syntax" src="https://github.com/user-attachments/assets/155e8081-a960-4dce-84a5-1341abd2708c" />
 
 Now let’s print the lists of algorithms and examples. Remember to add the prefix `cthth` to the `listof`, i.e., `\cthlistofalgorithms` and `\cthlistofexamples`!
 
