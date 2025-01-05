@@ -19,7 +19,7 @@ A colorful boxed theorem environment, combining `tcolorbox` and breakable boxes.
     "
   />
   <img
-    width="500"
+    width="400"
     alt="Star History Chart"
     src="https://api.star-history.com/svg?repos=joaomlourenco/coloredtheorem&type=Date"
   />
