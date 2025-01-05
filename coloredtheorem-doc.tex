@@ -140,7 +140,6 @@ Akin to \mintinline{TeX}+\newtheorem+ from the \texttt{amsmath} package, the use
   \end{itemize}
 \end{itemize}
 
-\clearpage
 \section{Example}
 \label{sec:examples}
 
@@ -160,7 +159,7 @@ Let's start by creating two new environments, one for \emph{algorithms} and anot
                                 attach title to upper={\\[0.5ex]}, 
                                 borderline west={1mm}{-2mm}{green!60!black}]
 
-And this is a thought!
+And this is a shiny thought!
 \begin{cththought}{This is a tought}
 \kant[2]
 \end{cththought}
@@ -262,12 +261,26 @@ Now, let's create a new box for \autoref{alg:advance1}, but with a different cus
 
 And now an example with no caption and a different visual…  this example will not go into the \mintinline{TeX}+\listofexamples+ below!
 
+\begin{minted}[bgcolor=red!5,fontsize=\small,escapeinside=||]{TeX}
+\begin{|\ca{cthexample}|}{}
+          [|\co{coltitle}=|black, |\co{colback}=|magenta!10, |\co{colframe}=|magenta!20]
+  |\cc{Example body here!}|
+\end{|\ca{cthexample}|}
+\end{minted}
+
 \begin{cthexample}{}[coltitle=black, colback=magenta!10, colframe=magenta!20]
   \emph{\kant[4]}
 \end{cthexample}
 
-And another unnumbered example using an alternative syntax:
+And yet another unnumbered example, this one using the alternative (star) syntax. This example will not go into the \mintinline{TeX}+\listofexamples+ below as well!
 
+\begin{minted}[bgcolor=red!5,fontsize=\small,escapeinside=||]{TeX}
+\begin{|\ca{cthexample*}|}
+          {|\ca{This is an unnumbered example with a title}|}
+          [|\co{coltitle}=|black, |\co{colback}=|yellow!10, |\co{colframe}=|yellow!20]
+  |\cc{Example body here!}|
+\end{|\ca{cthexample*}|}
+\end{minted}
 
 \begin{cthexample*}{This is an unnumbered example with a title}[coltitle=black, colback=yellow!10, colframe=yellow!20]
   \emph{\kant[4]}
