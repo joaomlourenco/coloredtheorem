@@ -2,7 +2,6 @@
 
 A colorful boxed theorem environment, combining `tcolorbox` and breakable boxes.  It supports full `tcolorbox` customization, automatic numbering, `\label{...}` and `\ref{…}`, and `\listof…`
 
-<!--
 --------
 
 <picture>
@@ -25,8 +24,9 @@ A colorful boxed theorem environment, combining `tcolorbox` and breakable boxes.
   />
 </picture>
 
+**If you opt for using this project, please give it a star by clicking the (⭐️) at the top right of the [project's page](https://github.com/joaomlourenco/biblatex-cse).**
+
 --------
--->
 
 ## About
 
