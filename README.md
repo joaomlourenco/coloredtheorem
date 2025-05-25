@@ -31,7 +31,7 @@ A colorful boxed theorem environment, combining `tcolorbox` and breakable boxes.
 ## About
 
 * **Package:** coloredtheorem — A colorful boxed theorem environment
-* **Copyright:** 2024 © João M. Lourenço <joao.lourenco@fct.unl.pt>
+* **Copyright:** 2024-2025 © João M. Lourenço <joao.lourenco@fct.unl.pt>
 * **CTAN:** https://ctan.org/pkg/coloredtheorem
 * **Repository:** https://github.com/joaomlourenco/coloredtheorem
 * **License:** The LaTeX Project Public License 1.3c
