@@ -64,7 +64,7 @@ There is also a command to generate the corresponding _\listof..._
     * `<Caption>` is the caption/title of the box. If the caption is left empty, this box will not be listed with the `\cthlistof<envname>s` (see below).
     * `<tcolorbox options>` options to be passed to the `tcolorbox` environment, which will override the defaults given in `\cthnewalgorithm` (this argument is optional).
     * `<Contents>` the contents to by typeset inside the colored environment.
-* `\listof<envname>s`
+* `\cthlistof<envname>s`
   * `<envname>` is the environment name suffix, e.g., `\cthlistofalgorithms`. Please
 notice that there is a ‘s’ (plural) after `<envname>`.
 
